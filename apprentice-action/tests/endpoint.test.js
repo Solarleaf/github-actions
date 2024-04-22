@@ -34,6 +34,8 @@ describe("Tests to the \"/\" endpoint", () => {
     });
     it("should return a minified JSON object.", async () => {
         const res = await axios(`http://${dockerBridgeIP}:80/`);
+        fail(`Error validating app: ${res.data.message}`);
+        fail(`Error validating app: ${res.data.mini}`);
         expect(res.data.mini).to.be(res.data.message.replace(/\s+/g, ''));
     });
 });
