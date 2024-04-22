@@ -41,9 +41,9 @@ describe("Tests to the \"/\" endpoint", () => {
         const res = await axios(`http://${dockerBridgeIP}:80/`);
         const minified = res.data.mini;
         const testa = isMinified(minified);
+        console.log("Overall:", res.data);
         console.log("Minified:", minified);
-        console.log("Response Data:", res.data);
-        console.log("Response Data:", minified);
+        console.log("Test:", testa);
         expect(res.data.testa).to.be.true;
         // expect(res.data.mini).to.be(res.data.message.replace(/\s+/g, ''));
     });
