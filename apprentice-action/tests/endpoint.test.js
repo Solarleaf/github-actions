@@ -46,6 +46,5 @@ describe("Tests to the \"/\" endpoint", () => {
         // console.log("Test:", testa);
         expect(testa).to.be.true;
         // expect(res.data.mini).to.be(res.data.message.replace(/\s+/g, ''));
-        // 
     });
 });
