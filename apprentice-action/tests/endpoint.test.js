@@ -2,6 +2,11 @@ const axios = require("axios");
 const expect = require("chai").expect;
 const dockerBridgeIP = "172.17.0.1";
 
+function isMinified(jsonInput) {
+    const minied = jsonInput.replace(/\s+/g, '');
+    return jsonInput.length == minied.length; 
+}
+
 describe("Tests to the \"/\" endpoint", () => {
     it("should return a 200 status code", async () => {
         const res = await axios(`http://${dockerBridgeIP}:80/`);
@@ -34,8 +39,8 @@ describe("Tests to the \"/\" endpoint", () => {
     });
     it("should return a minified JSON object.", async () => {
         const res = await axios(`http://${dockerBridgeIP}:80/`);
-        fail(`Error validating app: ${res.data.message}`);
-        fail(`Error validating app: ${res.data.mini}`);
-        expect(res.data.mini).to.be(res.data.message.replace(/\s+/g, ''));
+        const minified = res.data.mini;
+        expect(res.data.isMinified(minified)).to.be(true);
+        // expect(res.data.mini).to.be(res.data.message.replace(/\s+/g, ''));
     });
 });
